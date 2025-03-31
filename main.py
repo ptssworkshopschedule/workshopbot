@@ -1,7 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ConversationHandler, ContextTypes, CallbackQueryHandler
-from datetime import datetime
 
+from datetime import datetime
+import datetime as dt
 import os
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
@@ -425,10 +426,10 @@ async def show_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_message = await update.message.reply_text('Obtaining bookings from calendar...')
         service = build('calendar', 'v3', credentials = creds)
         
-        utc_plus_8 = datetime.timezone(datetime.timedelta(hours=8))
+        utc_plus_8 = dt.timezone(dt.timedelta(hours = 8))
         date = datetime.strptime(date, '%d%m%y')
-        time_min = date.replace(hour = 0, minute = 0, second = 0, microsecond = 0, tzinfo=utc_plus_8)
-        time_max = date.replace(hour = 23, minute = 59, second = 59, microsecond = 999999, tzinfo=utc_plus_8)
+        time_min = date.replace(hour = 0, minute = 0, second = 0, microsecond = 0, tzinfo = utc_plus_8)
+        time_max = date.replace(hour = 23, minute = 59, second = 59, microsecond = 999999, tzinfo = utc_plus_8)
 
         printed_date = date.strftime("%d %b %Y")
 
