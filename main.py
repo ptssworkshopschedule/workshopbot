@@ -449,7 +449,7 @@ async def show_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                )
 
         if not events:
-          await reply_message.reply_text(f"No bookings found for {printed_date}.")
+          await reply_message.edit_text(f"No bookings found for {printed_date}.")
           return ConversationHandler.END
           
         message = f"Here are the bookings for {printed_date}:\n\n"
